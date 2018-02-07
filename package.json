@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
+    "clean": "rm -r ./public",
+    "parcel": "parcel",
+    "watch": "parcel watch src/index.pug -d ./public",
+    "build": "parcel build src/index.pug -d ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +24,10 @@
   "homepage": "https://github.com/ztrehagem/marrakech#readme",
   "dependencies": {
     "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.5.1",
+    "parcel-plugin-pug": "^0.2.5",
+    "stylus": "^0.54.5"
   }
 }

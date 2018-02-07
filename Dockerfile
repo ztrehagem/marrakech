@@ -1,10 +1,10 @@
 FROM node:9.4
 
+WORKDIR /root
+
 ADD ./index.js /root/index.js
 ADD ./package.json /root/package.json
 ADD ./server /root/server
-ADD ./public /root/public
+ADD ./src /root/src
 
-WORKDIR /root
-
-CMD npm install ; npm run start
+CMD npm install ; npm run build ; npm run start
