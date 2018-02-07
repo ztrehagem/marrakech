@@ -1,4 +1,4 @@
-FROM node:9.4
+FROM node:9.5
 
 WORKDIR /root
 
