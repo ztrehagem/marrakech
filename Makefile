@@ -1,8 +1,9 @@
-default: restart
+default: up
 
-restart: down up
+re:
+	docker-compose restart
 up:
-	docker-compose up --build &
+	docker-compose up &
 down:
 	docker-compose down
 rm:
