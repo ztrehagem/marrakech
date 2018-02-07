@@ -1,6 +1,10 @@
 FROM node:9.4
 
-ADD ./server /root/
+ADD ./index.js /root/index.js
+ADD ./package.json /root/package.json
+ADD ./server /root/server
+ADD ./public /root/public
+
 WORKDIR /root
 
-CMD node index.js
+CMD npm install ; npm run start

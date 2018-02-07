@@ -4,5 +4,7 @@ services:
     build: .
     ports:
       - 8080:8080
-    # volumes:
-    #   - ./server:/root
+    environment:
+      PORT: 8080
+    volumes:
+      - ./public:/root/public
