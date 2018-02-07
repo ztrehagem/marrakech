@@ -7,4 +7,4 @@ ADD ./package.json /root/package.json
 ADD ./server /root/server
 ADD ./src /root/src
 
-CMD npm install ; npm run build ; npm run start
+CMD npm install ; npm run build ; npm run server
