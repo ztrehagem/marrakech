@@ -1,6 +1,11 @@
 <template lang="pug">
-.app-root
-  h1 HELLLLO
+.app
+  nav
+    ul
+      li: router-link(:to="{ name: 'root' }") ROOT
+      li: router-link(:to="{ name: 'threejs' }") THREEJS
+  hr
+  router-view
 </template>
 
 <script>
@@ -12,7 +17,4 @@ export default {
 </script>
 
 <style lang="stylus">
-h1 {
-  font-weight: normal;
-}
 </style>
