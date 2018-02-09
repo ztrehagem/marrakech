@@ -7,8 +7,8 @@
     "server": "node .",
     "clean": "rm -r ./public",
     "parcel": "parcel",
-    "watch": "parcel watch src/index.pug -d ./public",
-    "build": "parcel build src/index.pug -d ./public",
+    "watch": "parcel watch src/index.pug -d ./public --public-url /",
+    "build": "NODE_ENV=production parcel build src/index.pug -d ./public --public-url /",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,8 +26,13 @@
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
     "parcel-bundler": "^1.5.1",
     "parcel-plugin-pug": "^0.2.5",
-    "stylus": "^0.54.5"
+    "parcel-plugin-vue": "^1.5.0",
+    "pug": "^2.0.0-rc.4",
+    "stylus": "^0.54.5",
+    "three": "^0.89.0",
+    "vue": "^2.5.13"
   }
 }
