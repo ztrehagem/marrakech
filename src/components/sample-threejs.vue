@@ -45,10 +45,7 @@ export default {
   },
   destroyed() {
     console.log('destroyed sample-threejs');
-    if (!!this.requestedAnimationFrame) {
-      cancelAnimationFrame(this.requestedAnimationFrame);
-      this.requestedAnimationFrame = null;
-    }
+    window.cancelAnimationFrame(this.requestedAnimationFrame);
     this.scene.remove(this.cube);
     this.geometry.dispose();
     this.material.dispose();
