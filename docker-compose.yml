@@ -9,6 +9,7 @@ services:
     volumes:
       - ./index.js:/root/index.js:ro
       - ./package.json:/root/package.json:ro
+      - ./.babelrc:/root/.babelrc:ro
       - ./server:/root/server:ro
       - ./src:/root/src:ro
       - ./public:/root/public
