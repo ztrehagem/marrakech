@@ -1,11 +1,13 @@
-default: up-build
+default: up
 
-up:
-	docker-compose up &
 up-build:
 	docker-compose up --build &
+up:
+	docker-compose up &
 down:
 	docker-compose down
+serve:
+	docker-compose exec web npm run server
 rm:
 	docker-compose rm -f
 ps:
