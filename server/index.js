@@ -32,6 +32,7 @@ const configRoutes = (app) => {
   app.use('/api/hoge', hoge);
 
   // ここまででマッチしないURLはpublic配下のファイルを配信
+  app.get('/', (req, res) => serveFile(res, '/index.html'));
   app.get('*', (req, res) => serveFile(res, req.url));
 };
 

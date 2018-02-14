@@ -1,6 +1,6 @@
-import WelcomePage from './components/welcome-page.vue';
-import SampleFetch from './components/sample-fetch.vue';
-import SampleThreejs from './components/sample-threejs.vue';
+import WelcomePage from '../components/welcome-page.vue';
+import SampleFetch from '../components/sample-fetch.vue';
+import SampleThreejs from '../components/sample-threejs.vue';
 
 export default [
   { path: '/', name: 'welcome', component: WelcomePage },

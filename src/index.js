@@ -1,6 +1,6 @@
 import Vue from 'vue/dist/vue.esm.js';
 import VueRouter from 'vue-router';
-import routes from './routes';
+import routes from './config/routes';
 import App from './components/app.vue';
 
 Vue.use(VueRouter);
