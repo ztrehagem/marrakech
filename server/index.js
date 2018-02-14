@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
+const expressSession = require('express-session');
+const connectRedis = require('connect-redis');
 const hoge = require('./controllers/api/hoge');
 const redisUtil = require('./utils/redis');
 
+const RedisStore = connectRedis(expressSession);
 const publicPath = path.resolve('public');
 
 const serveFile = (res, url) => {
@@ -12,18 +15,24 @@ const serveFile = (res, url) => {
 const configRoutes = (app) => {
   // 全部のリクエストでまずここを通る
   app.use((req, res, next) => {
-    console.log('reqested', req.url);
+    console.log(`[${new Date().toLocaleString()}]`, req.method, req.url);
     next();
   });
+
+  // /api配下へのリクエストはセッションを見る
+  app.use('/api/*', expressSession({
+    store: new RedisStore({ client: redisUtil.createClient() }),
+    secret: 'hoge secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 150000 },
+  }));
 
   // コントローラにルーティング
   app.use('/api/hoge', hoge);
 
-  // ここまででマッチしないURLかつ拡張子を持つものはpublic配下のファイルを配信
-  app.get(/.+\.\w+$/, (req, res) => serveFile(res, req.url));
-
-  // ここまででマッチしないURLはindex.htmlを配信
-  app.all('*', (req, res) => serveFile(res, '/index.html'));
+  // ここまででマッチしないURLはpublic配下のファイルを配信
+  app.get('*', (req, res) => serveFile(res, req.url));
 };
 
 exports.start = () => {

@@ -8,3 +8,12 @@ export const getHoge = async () => {
     return [e, e.response.data];
   }
 }
+
+export const postHoge = async (val) => {
+  try {
+    const response = await axios.post(`/api/hoge?val=${val}`);
+    return [null, response.data];
+  } catch (e) {
+    return [e, e.response.data];
+  }
+}
