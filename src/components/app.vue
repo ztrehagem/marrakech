@@ -1,17 +1,15 @@
 <template lang="pug">
 .app
-  nav
-    ul
-      li: router-link(:to="{ name: 'root' }") ROOT
-      li: router-link(:to="{ name: 'threejs' }") THREEJS
-  hr
+  head-bar
   router-view
 </template>
 
 <script>
+import HeadBar from './head-bar.vue';
+
 export default {
-  mounted() {
-    console.log('app mounted');
+  components: {
+    HeadBar,
   },
 };
 </script>

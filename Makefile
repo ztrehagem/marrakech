@@ -6,8 +6,6 @@ up-build:
 	docker-compose up --build &
 down:
 	docker-compose down
-re:
-	docker-compose restart
 rm:
 	docker-compose rm -f
 ps:

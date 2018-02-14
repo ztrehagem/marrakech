@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const hoge = require('./controllers/api/hoge');
+const redisUtil = require('./utils/redis');
 
 const publicPath = path.resolve('public');
 

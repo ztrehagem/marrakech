@@ -1,6 +1,6 @@
 <template lang="pug">
-.root-page
-  h1 this is root-page
+.fetch
+  h1 this is fetch
   button(@click.prevent="fetch") FETCH
   div {{fetched}}
 </template>
