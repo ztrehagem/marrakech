@@ -15,6 +15,8 @@ ps:
 bash:
 	docker-compose exec web bash
 
+install:
+	npm install
 build:
 	npm run build
 watch:
@@ -22,7 +24,7 @@ watch:
 clean:
 	npm run clean
 
-deploy:
+deploy: install clean build
 	heroku container:push web
 open:
 	heroku open

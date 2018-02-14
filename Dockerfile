@@ -4,8 +4,8 @@ WORKDIR /root
 
 ADD ./index.js /root/index.js
 ADD ./package.json /root/package.json
-ADD ./.babelrc /root/.babelrc
 ADD ./server /root/server
-ADD ./src /root/src
+ADD ./node_modules /root/node_modules
+ADD ./public /root/public
 
-CMD npm install ; npm run build ; npm run server
+CMD npm run server
