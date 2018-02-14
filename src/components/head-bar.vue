@@ -3,6 +3,7 @@
   router-link.link.-title(:to="{ name: 'welcome' }") Marrakech
   router-link.link(:to="{ name: 'dev:fetch' }") fetch
   router-link.link(:to="{ name: 'dev:threejs' }") three
+  router-link.link(:to="{ name: 'dev:socket' }") socket
 </template>
 
 <script>
