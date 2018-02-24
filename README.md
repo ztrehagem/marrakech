@@ -13,6 +13,7 @@
 
 # Developing client application
 
-1. Install **Node.js**.
-1. `$ npm run watch` after running local server.
-1. Then, hot module replacement is available.
+1. Install **Node.js** v9.5.
+1. `$ npm install` to download dependent modules.
+1. `$ npm run watch` to build assets and watch src files.
+1. http://localhost:8080
