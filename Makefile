@@ -6,23 +6,14 @@ down:
 	docker-compose down
 serve:
 	docker-compose exec web npm run server
-rm:
-	docker-compose rm -f
-ps:
-	docker-compose ps
-bash:
-	docker-compose exec web bash
+assets:
+	docker-compose exec web npm run build
 
-install:
-	npm install
-build:
-	npm run build
-watch:
-	npm run watch
-clean:
-	npm run clean
-
-deploy: install clean build
+prod:
+	docker-compose --file docker-compose.prod.yml up --build
+prod-down:
+	docker-compose --file docker-compose.prod.yml down
+deploy:
 	heroku container:push web
 open:
 	heroku open

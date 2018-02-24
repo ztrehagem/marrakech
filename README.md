@@ -14,5 +14,5 @@
 # Developing client application
 
 1. Install **Node.js**.
-1. `$ make watch` after running local server.
+1. `$ npm run watch` after running local server.
 1. Then, hot module replacement is available.

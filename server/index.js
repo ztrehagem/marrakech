@@ -20,18 +20,16 @@ const logger = (req, res, next) => {
   next();
 };
 
-exports.start = () => {
-  const app = express();
-  const server = http.Server(app);
-  const io = socketIO(server);
+const app = express();
+const server = http.Server(app);
+const io = socketIO(server);
 
-  socket.config(io);
+socket.config(io);
 
-  app.use(logger);
-  app.use('/api/*', session);
-  app.use(router);
+app.use(logger);
+app.use('/api/*', session);
+app.use(router);
 
-  server.listen(process.env.PORT);
+server.listen(process.env.PORT);
 
-  console.log('listening');
-};
+console.log('listening');
