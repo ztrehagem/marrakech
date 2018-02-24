@@ -10,7 +10,7 @@
   },
   "scripts": {
     "server": "node ./server",
-    "clean": "rm -r ./public",
+    "clean": "trash './public/**/*'",
     "parcel": "parcel",
     "watch": "parcel watch src/index.pug -d ./public --public-url /",
     "build": "NODE_ENV=production parcel build src/index.pug -d ./public --public-url /",
