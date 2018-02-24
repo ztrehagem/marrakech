@@ -13,7 +13,3 @@ prod:
 	docker-compose --file docker-compose.prod.yml up --build
 prod-down:
 	docker-compose --file docker-compose.prod.yml down
-deploy:
-	heroku container:push web
-open:
-	heroku open
