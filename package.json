@@ -22,7 +22,8 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "redis": "^2.8.0",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "axios": "^0.17.1",

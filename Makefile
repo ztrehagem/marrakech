@@ -6,6 +6,8 @@ down:
 	docker-compose down
 serve:
 	docker-compose exec web npm run server
+install:
+	docker-compose exec web npm install
 assets:
 	docker-compose exec web npm run build
 
