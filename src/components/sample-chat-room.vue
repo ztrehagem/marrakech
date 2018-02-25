@@ -21,13 +21,9 @@ export default {
   created() {
     this.socket.emit('join', this.id, (ok) => {
       console.log('join', ok);
-      if (!ok) {
-        this.$router.push({ name: 'dev:chat:roomlist' });
-      }
+      if (!ok) this.$router.push({ name: 'dev:chat:roomlist' });
     });
-    this.socket.on('said', (message) => {
-      this.messages.unshift(message);
-    });
+    this.socket.on('said', this.onSaid);
   },
   destroyed() {
     this.socket.emit('leave', null, (ok) => {
@@ -41,7 +37,10 @@ export default {
         this.text = '';
       });
     },
-  }
+    onSaid(message) {
+      this.messages.unshift(message);
+    },
+  },
 }
 </script>
 
