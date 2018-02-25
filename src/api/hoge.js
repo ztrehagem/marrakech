@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getHoge = async () => {
+export const get = async () => {
   try {
     const response = await axios.get('/api/hoge');
     return [null, response.data];
@@ -9,7 +9,7 @@ export const getHoge = async () => {
   }
 }
 
-export const postHoge = async (val) => {
+export const post = async (val) => {
   try {
     const response = await axios.post(`/api/hoge?val=${val}`);
     return [null, response.data];

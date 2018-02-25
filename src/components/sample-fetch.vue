@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { getHoge, postHoge } from '../modules/api';
+import * as hoge from '../api/hoge';
 
 export default {
   data: () => ({
@@ -19,12 +19,12 @@ export default {
   methods: {
     async submit() {
       console.log('submitting...');
-      const [error, response] = await postHoge(this.text);
+      const [error, response] = await hoge.post(this.text);
       console.log(response);
     },
     async fetch() {
       console.log('fetching...');
-      const [error, fetched] = await getHoge();
+      const [error, fetched] = await hoge.get();
       this.fetched = error || fetched;
       console.log(this.fetched);
     },

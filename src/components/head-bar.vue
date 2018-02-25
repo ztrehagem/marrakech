@@ -4,6 +4,7 @@
   router-link.link(:to="{ name: 'dev:fetch' }") fetch
   router-link.link(:to="{ name: 'dev:threejs' }") three
   router-link.link(:to="{ name: 'dev:socket' }") socket
+  router-link.link(:to="{ name: 'dev:chat:roomlist' }") chat
 </template>
 
 <script>

@@ -15,7 +15,7 @@ export default {
     text: '',
   }),
   created() {
-    this.socket = io();
+    this.socket = io('/sample');
     this.socket.on('greeting', this.onGreeting);
   },
   destroyed() {
