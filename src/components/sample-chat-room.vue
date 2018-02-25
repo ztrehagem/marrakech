@@ -33,6 +33,7 @@ export default {
     this.socket.emit('leave', null, (ok) => {
       console.log('leave', ok);
     });
+    this.socket.off('said');
   },
   methods: {
     say() {
