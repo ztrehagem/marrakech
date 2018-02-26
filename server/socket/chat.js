@@ -29,6 +29,7 @@ exports.config = (io) => io.on('connection', (socket) => {
   });
 
   socket.on('say', async (message, cb) => {
+    user.room.touch();
     io.to(user.room.id).emit('said', message);
     cb(true);
   });

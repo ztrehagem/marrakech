@@ -2,6 +2,9 @@ const uuid = require('uuid/v4');
 const redisUtil = require('../utils/redis');
 
 const KEY_PREFIX = 'chat:';
+const TTL = `${24 * 60 * 60}`; // 24 hours
+
+const keyFromId = id => `${KEY_PREFIX}${id}`;
 
 module.exports = class ChatRoom {
   constructor(id) {
@@ -12,7 +15,7 @@ module.exports = class ChatRoom {
     const redis = redisUtil.createClient();
 
     try {
-      const keys = await redis.keysAsync(`${KEY_PREFIX}*`);
+      const keys = await redis.keysAsync(keyFromId('*'));
       const ids = keys.map(key => key.substr(KEY_PREFIX.length));
       return ids;
     } catch (e) {
@@ -29,7 +32,8 @@ module.exports = class ChatRoom {
     try {
       const id = uuid();
       // TODO watchして被ってないか確かめる
-      await redis.saddAsync(`${KEY_PREFIX}${id}`, user.id);
+      const key = keyFromId(id);
+      await redis.multi().sadd(key, user.id).expire(key, TTL).execAsync();
       return new ChatRoom(id);
     } catch (e) {
       console.error(e);
@@ -43,7 +47,8 @@ module.exports = class ChatRoom {
     const redis = redisUtil.createClient();
 
     try {
-      const exists = await redis.keysAsync(`${KEY_PREFIX}${id}`);
+      const key = keyFromId(id);
+      const exists = await redis.keysAsync(key);
       return (!exists || !exists.length) ? null : new ChatRoom(id);
     } catch (e) {
       console.error(e);
@@ -57,7 +62,7 @@ module.exports = class ChatRoom {
     const redis = redisUtil.createClient();
 
     try {
-      await redis.saddAsync(`${KEY_PREFIX}${this.id}`, user.id);
+      await redis.multi().sadd(this.key, user.id).expire(this.key, TTL).execAsync();
       return true;
     } catch (e) {
       console.error(e);
@@ -71,11 +76,27 @@ module.exports = class ChatRoom {
     const redis = redisUtil.createClient();
 
     try {
-      await redis.sremAsync(`${KEY_PREFIX}${this.id}`, user.id);
+      await redis.multi().srem(this.key, user.id).expire(this.key, TTL).execAsync();
     } catch (e) {
       throw e;
     } finally {
       redis.quit();
     }
+  }
+
+  async touch() {
+    const redis = redisUtil.createClient();
+
+    try {
+      await redis.expireAsync(this.key, TTL);
+    } catch (e) {
+      throw e;
+    } finally {
+      redis.quit();
+    }
+  }
+
+  get key() {
+    return keyFromId(this.key);
   }
 }
