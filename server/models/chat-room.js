@@ -2,7 +2,7 @@ const uuid = require('uuid/v4');
 const redisUtil = require('../utils/redis');
 
 const KEY_PREFIX = 'chat:';
-const TTL = `${24 * 60 * 60}`; // 24 hours
+const TTL = `${1 * 60 * 60}`; // 24 hours
 
 const keyFromId = id => `${KEY_PREFIX}${id}`;
 
@@ -97,6 +97,6 @@ module.exports = class ChatRoom {
   }
 
   get key() {
-    return keyFromId(this.key);
+    return keyFromId(this.id);
   }
 }

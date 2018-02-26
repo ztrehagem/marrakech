@@ -3,7 +3,7 @@ import SampleFetch from '../components/sample-fetch.vue';
 import SampleThreejs from '../components/sample-threejs.vue';
 import SampleSocket from '../components/sample-socket.vue';
 import SampleChat from '../components/sample-chat.vue';
-import SampleChatRoomList from '../components/sample-chat-room-list.vue';
+import SampleChatLobby from '../components/sample-chat-lobby.vue';
 import SampleChatRoom from '../components/sample-chat-room.vue';
 
 export default [
@@ -12,7 +12,7 @@ export default [
   { path: '/dev/threejs', name: 'dev:threejs', component: SampleThreejs },
   { path: '/dev/socket', name: 'dev:socket', component: SampleSocket },
   { path: '/dev/chat', component: SampleChat, children: [
-    { path: '', name: 'dev:chat:roomlist', component: SampleChatRoomList },
+    { path: '', name: 'dev:chat:lobby', component: SampleChatLobby },
     { path: ':id', name: 'dev:chat:room', component: SampleChatRoom, props: true },
   ] },
 ];
