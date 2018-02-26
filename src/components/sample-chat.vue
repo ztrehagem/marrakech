@@ -1,6 +1,5 @@
 <template lang="pug">
 .sample-chat
-  h2 sample-chat
   router-view(:socket="socket")
 </template>
 

@@ -17,20 +17,36 @@ exports.config = (io) => io.on('connection', (socket) => {
 
   socket.on('join', async (rid, cb) => {
     const ok = await user.joinRoom(rid);
-    if (ok) socket.join(user.room.id);
+    if (ok) {
+      socket.join(user.room.id);
+      io.to(user.room.id).emit('joined', { name: user.name, date: Date.now() });
+    }
     cb(ok);
   });
 
   socket.on('leave', async (_, cb) => {
     if (!user.room) return cb(true);
-    socket.leave(user.room.id);
+    const rid = user.room.id;
     const ok = await user.leaveRoom();
+    if (ok) {
+      socket.leave(rid);
+      io.to(rid).emit('leaved', { name: user.name, date: Date.now() });
+    }
     cb(ok);
   });
 
   socket.on('say', async (message, cb) => {
-    io.to(user.room.id).emit('said', message);
+    user.room.touch();
+    io.to(user.room.id).emit('said', {
+      name: user.name,
+      message,
+      date: Date.now(),
+    });
     cb(true);
+  });
+
+  socket.on('name', (name) => {
+    user.setName(name);
   });
 
   socket.on('disconnect', async () => {
